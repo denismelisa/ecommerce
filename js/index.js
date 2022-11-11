@@ -13,15 +13,21 @@ function validar(){
     return email.value.length > 0 && pass.value.length > 0 ;
 }
 
-//se agrega el escuchador de "click" y se evalua si la funcion validar es true se redirecciona a main.html que es la pagina principal, de lo contrario muestra la alerta de error
-enviar.addEventListener("click", function(){
-    if (validar() === true) {
-        localStorage.setItem("mail", email.value);
-        window.location = "main.html";
-    } else{ showAlertError()
-    };
-});
 
+document.addEventListener("DOMContentLoaded", function() {
+
+    localStorage.removeItem("mail");
+
+//se agrega el escuchador de "click" y se evalua si la funcion validar es true se redirecciona a main.html que es la pagina principal, de lo contrario muestra la alerta de error
+
+    enviar.addEventListener("click", function(){
+        if (validar() === true) {
+            localStorage.setItem("mail", email.value);
+            window.location = "main.html";
+        } else{ showAlertError()
+        };
+    });
+});
 
 
 

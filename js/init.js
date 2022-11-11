@@ -17,10 +17,16 @@ let hideSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "none";
 }
 
-let getJSONData = function (url) {
+//funcion para guardar en el local storage el id de cada producto y redirigir a product-info.html -  es llamada al hacer click en los productos
+function setProdID(id) {
+  localStorage.setItem("prodID", id);
+  window.location = "product-info.html";
+}
+
+let getJSONData = async function (url) {
   let result = {};
   showSpinner();
-  return fetch(url)
+  return await fetch(url)
     .then(response => {
       if (response.ok) {
         return response.json();
@@ -42,16 +48,26 @@ let getJSONData = function (url) {
     });
 }
 
-// Cuando se carga el documento agrego al 4to elemento de la barra de navegacion un link que redireccione a la pagina de usuario, (que esta en desarrollo) y a su vez se puede ver el correo electronico de la persona registrada - si no hay usuario ingresado por haber entrado a otro html que no sea el index se puede ver la leyenda "Ingresar" y si se clickea, se redirige a index.html
+// Cuando se carga el documento agrego al 4to elemento de la barra de navegacion un menú desplegable con las opciones de redireccionar al carrito, a la pagina de usuario, (que esta en desarrollo) y cerrar sesión. Y a su vez se puede ver el correo electronico de la persona registrada - si no hay usuario ingresado por haber entrado a otro html que no sea el index se puede ver la leyenda "Ingresar" y si se clickea, se redirige a index.html
 
 document.addEventListener("DOMContentLoaded", function (e) {
   if (user != null) {
     document.getElementsByClassName("nav-item")[3].innerHTML += `
-    <a class="nav-link" href="my-profile.html"> ` + user + `
-    </a>`
+    
+    <div class="dropdown col align-self-end">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" <a class="nav-link" href="#"> ` + user + `
+          </a>      
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+            <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+            <li><a class="dropdown-item" href="index.html">Cerrar sesión</a></li>
+          </ul>
+        </div>`
   } else {
     document.getElementsByClassName("nav-item")[3].innerHTML += `
     <a class="nav-link" href="index.html"> Ingresar
     </a>`
   }
+
 });

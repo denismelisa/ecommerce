@@ -11,10 +11,14 @@ let maxCost = document.getElementById("rangeFilterCountMax");
 
 //*función que recibe un array con los datos, y los muestra en pantalla a través el uso del DOM
 function showProductsList(array) {
+
     let htmlContentToAppend = ""
+    let search = document.getElementById("buscar").value;
 
     //* un for of para iterar en los objetos del array recibido por parámetro de la función y agregar por cada uno de ellos y por medio del DOM, al elemento con ID "container" del html, varios div con los atributos de cada objeto iterado
-    for (let product of array) {
+
+    for (let product of array) {        
+        if (product.description.toLowerCase().includes(search.toLowerCase()) || product.name.toLowerCase().includes(search.toLowerCase())){
 
         htmlContentToAppend += `
         <div onclick="setProdID(${product.id})" class="list-group-item list-group-item-action cursor-active">
@@ -33,13 +37,14 @@ function showProductsList(array) {
         </div> `
 
         document.getElementById("container").innerHTML = htmlContentToAppend;
-    };
+    }};
 
     //se inserta el título y subtítulo de la categoría en el elemento de ID "container" del html (se toma como ejemplo categories.html)
     document.getElementById("title").innerHTML = ` 
     <div class="text-center p-4">
         <h2>Productos</h2>
         <p class="lead">Verás aquí todos los productos de la categoría <strong> ` + productsArray.catName + `</strong></p>
+        
     </div>
       `
 }
@@ -65,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     });
 
     /* Cuando se clickea el boton "btnSortDesc" se ordena el array de mayor precio a menor */
-    btnSortDesc.addEventListener("click", function () { 
+    btnSortDesc.addEventListener("click", function () {
         let sortDescArray = productsArray.products;
         JSON.stringify(sortDescArray.sort((a, b) => {
             if (a.cost < b.cost) { return 1; }
@@ -78,22 +83,22 @@ document.addEventListener("DOMContentLoaded", function (e) {
     /* Cuando se clickea el boton "btnSortAsc" se ordena el array de menor precio a mayor */
     btnSortAsc.addEventListener("click", function () {
         let sortAscArray = productsArray.products;
-        JSON.stringify(sortAscArray.sort((a, b) => {
+        sortAscArray.sort((a, b) => {
             if (a.cost < b.cost) { return -1; }
             if (a.cost > b.cost) { return 1; }
             return 0;
-        }));
+        });
         showProductsList(sortAscArray);
     });
 
     /* Cuando se clickea el boton "btnRel" se ordena el array de mayor cant. de vendidos a menor */
     btnRel.addEventListener("click", function () {
         let sortRelArray = productsArray.products;
-        JSON.stringify(sortRelArray.sort((a, b) => {
+        sortRelArray.sort((a, b) => {
             if (a.soldCount < b.soldCount) { return 1; }
             if (a.soldCount > b.soldCount) { return -1; }
             return 0;
-        }));
+        });
         showProductsList(sortRelArray);
     });
 
@@ -109,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     });
 
     /* Cuando se clickea el boton "btnClear" se limpian los campos "min" y "max" y se muestra el array inicial */
-    btnClear.addEventListener("click", function(){
+    btnClear.addEventListener("click", function () {
         minCost.value = "";
         maxCost.value = "";
 
@@ -119,10 +124,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
         showProductsList(productsArray.products);
     });
 
-});
+    // FUNCION PARA BUSCAR EN TIEMPO REAL
+    document.addEventListener("keyup", function(){
+        showProductsList(productsArray.products); 
+      })
+    //   ...
 
-//funcion para guardar en el local storage el id de cada producto y redirigir a product-info.html -  es llamada al hacer click como se definió en la línea 20
-function setProdID(id) { 
-    localStorage.setItem("prodID", id);
-    window.location = "product-info.html"
-}
+});

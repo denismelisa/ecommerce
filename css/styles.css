@@ -48,6 +48,7 @@ nav a {
   }
 }
 
+
 .jumbotron p:last-child {
   margin-bottom: 0;
 }
@@ -187,5 +188,30 @@ a.custom-card:hover {
 
 .checked {
   color: orange;
+}
+
+
+
+tr.c{
+  border-left: 1px solid;
+  border-right: 1px solid;
+}
+
+#col{
+  border-top: 1px solid;
+}
+
+#fila{
+  border-bottom: 1px solid;
+}
+
+#images-rp{
+  display: flex;
+  flex-direction: row;
+}
+
+#photo{
+  display: flex;
+  align-items: flex-start;
 }
 

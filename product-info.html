@@ -10,6 +10,7 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -22,7 +23,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-between">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
+            <a class="nav-link" href="main.html">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="categories.html">Categorías</a>
@@ -45,6 +46,36 @@
       </div> -->
 
     </div>
+
+    <div class="container" id="coment">
+      <div class="text-left p-4">
+        <h2>Comentar</h2>
+          <form action="#" method="get">
+            <label for="opinion">Tu opinión:</label>
+            <br>
+            <textarea name="opinion" rows="5" cols="50" id="opinion"></textarea>
+            <br>
+            <br>
+            <label for="score">Tu puntuación:</label>
+            <select name="score" id="score">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <br>
+            <br>
+            <button class="btn btn-primary my-2" id="btnSend">Enviar</button>
+          </form>
+          <hr>
+      </div>    
+  </div>
+
+  <div class="container" id="relatedProducts">
+
+  </div>
+
   </main>
   <footer class="text-muted">
     <div class="container">
