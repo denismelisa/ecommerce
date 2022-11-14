@@ -7,25 +7,24 @@ document.addEventListener("DOMContentLoaded", async function (e) {
         if (resultObj.status === "ok") {
             itemInicial = resultObj.data.articles;
             console.log(CART_INFO_URL + 25801 + EXT_TYPE);
-                if (storage !== null) {
+            if (storage !== null ) {
                 showCarrito(carrito);
-                updateTotalCosts();
-            } else {
+            }else{
                 carrito = itemInicial;
                 console.log(carrito)
                 localStorage.setItem("articles", JSON.stringify(carrito));
                 showCarrito(carrito);
-                updateTotalCosts();
             }
         }
         else { console.log("ERROR AL OBTENER JSON") };
     });
-    
-    for (let i = 0; i < carrito.length; i++) {
+
+    if (carrito !== null) {
+        for (let i = 0; i < carrito.length; i++) {
         document.getElementById("cant" + i).addEventListener("change", function () {
             updateTotalCosts();
         });
-    };
+    }}
 
     document.getElementById("premium").addEventListener("change", function () {
         comissionPercentage = 0.15;
@@ -44,10 +43,9 @@ document.addEventListener("DOMContentLoaded", async function (e) {
 
 });
 //
-
+let items = document.getElementById("items");
 //función que muestra los asrtículos del carrito (local storage)
 function showCarrito(articles) {
-    console.log(articles);
     let htmlContentToAppend = "";
     if (articles.length >= 1) {
 
@@ -58,13 +56,18 @@ function showCarrito(articles) {
                 <td class="col-2 id="photo"><img src="${article.image}"alt="" width="60%" height="60%"></td>
                 <td class="col-3">${article.name}</td>
                 <td class="col-3">${article.currency} ${article.unitCost}</td>
-                 <td class="col-2"> <input type="number" id="cant${i}" min="1" required="" value="1" oninput="updateItemCost(${i})" class="form-control"></td>
+                 <td class="col-1"> <input type="number" id="cant${i}" min="1" required="" value="1" oninput="updateItemCost(${i})" class="form-control"></td>
                  <th class="col-2"><span id="subtotalItemCost${i}">USD 0</span></th>
+                 <th class="col-1"><button type="button" class="btn btn-outline-danger" onclick="deleteItem(${i})"><i class="bi bi-trash3-fill"></i>
+                 </button></th>
             </tr>
             `;
         };
-        document.getElementById("items").innerHTML += htmlContentToAppend;
+        items.innerHTML = htmlContentToAppend;
+    } else {
+        items.innerHTML = "No hay artículos"
     }
+    updateTotalCosts();
 };
 // //
 
@@ -100,7 +103,6 @@ function updateTotalCosts() {
             subtotalItem = Math.round(subtotalItem / 40);
         }
         subtotalCost = subtotalCost + subtotalItem;
-        console.log(subtotalCost)
     }
     let subtotalCostHTML = document.getElementById("subtotalText");
     let comissionCostHTML = document.getElementById("comissionText");
@@ -114,6 +116,14 @@ function updateTotalCosts() {
     comissionCostHTML.innerHTML = comissionToShow;
     totalCostHTML.innerHTML = totalCostToShow;
 };
+//
+
+//funcion para eliminar item del carrito
+function deleteItem(i){
+    carrito.splice(i, 1);
+    localStorage.setItem("articles", JSON.stringify(carrito));
+    showCarrito(carrito);
+    };
 //
 
 

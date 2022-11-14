@@ -215,3 +215,10 @@ tr.c{
   align-items: flex-start;
 }
 
+#card-perfil{
+  width: 150px;
+  display: flex;
+  align-items: flex-start;
+  padding: 0%;
+}
+

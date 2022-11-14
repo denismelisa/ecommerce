@@ -51,11 +51,75 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
+    <div class="container" id="perfil">
+      <!-- <div class="alert alert-danger text-center" role="alert">
         <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      </div> -->
+      <div class="row justify-content-center">
+        <div class="col-8">
+          <div class="text-left p-3">
+            <div class="row">
+              <div class="col-md-4">
+                <h2>Perfil</h2>
+              </div>
+              <div class="col-md-4 card ms-auto" id="card-perfil">
+                <div class="card-body">
+                  <img class="card-img-top" id="photo" src="img/profile_empty.jpg" alt="">
+                </div>
+              </div>
+            </div>
+            <hr>
+            <form action="#" method="get" class="row mt-4 needs-validation" novalidate>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="firstName" class="form-label">Primer nombre*</label>
+                  <input type="text" class="form-control" id="firstName" required>
+                  <div class="valid-feedback"></div>
+                  <div class="invalid-feedback">Ingrese su nombre</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="secondName" class="form-label">Segundo nombre</label>
+                  <input type="text" class="form-control" id="secondName">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="firstLastname" class="form-label">Primer apellido*</label>
+                  <input type="text" class="form-control" id="firstLastname" required>
+                  <div class="valid-feedback"></div>
+                  <div class="invalid-feedback">Ingrese su apellido</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="secondLastname" class="form-label">Segundo apellido</label>
+                  <input type="text" class="form-control" id="secondLastname">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="email" class="form-label">E-mail</label>
+                  <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="photoInput" class="form-label">Imagen de perfil</label>
+                  <input type="file" id="photoInput" class="form-control" accept="image/*" onchange="photoLoad()" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="contactNumber" class="form-label">Teléfono de contacto*</label>
+                  <input type="number" class="form-control" id="contactNumber" required>
+                  <div class="valid-feedback"></div>
+                  <div class="invalid-feedback">Ingrese un número de contacto</div>
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <button class="btn btn-primary" type="submit" id="saveBtn">Guardar cambios</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
-    </div>
   </main>
   <footer class="text-muted">
     <div class="container">
@@ -65,6 +129,9 @@
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a> -
         2022</p>
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+    </div>
+    <div class="alert alert-success alert-dismissible fade" role="alert" id="alert-success">¡Datos guardados con éxito!
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   </footer>
   <script src="js/bootstrap.bundle.min.js"></script>

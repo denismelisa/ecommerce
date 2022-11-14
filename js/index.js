@@ -17,6 +17,7 @@ function validar(){
 document.addEventListener("DOMContentLoaded", function() {
 
     localStorage.removeItem("mail");
+    localStorage.removeItem("user");
 
 //se agrega el escuchador de "click" y se evalua si la funcion validar es true se redirecciona a main.html que es la pagina principal, de lo contrario muestra la alerta de error
 
